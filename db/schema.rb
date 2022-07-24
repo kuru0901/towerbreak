@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_23_043751) do
+ActiveRecord::Schema.define(version: 2022_07_24_034158) do
+
+  create_table "contents", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "category", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title", "category"], name: "index_contents_on_title_and_category", unique: true
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_properties_on_content_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -20,6 +37,16 @@ ActiveRecord::Schema.define(version: 2022_07_23_043751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.string "comment"
+    t.integer "user_id"
+    t.integer "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_votes_on_property_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
 end

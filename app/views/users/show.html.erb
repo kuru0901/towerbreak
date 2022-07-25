@@ -1,0 +1,13 @@
+<div class="container">
+  <h1 class="text-center"><%= current_user.name %>さんの積んでるコンテンツ一覧</h1>
+  <div class="center-block">
+    <div>
+      <%= form_with model: @content, url: properties_path(params[:id]), local: true do |f| %>
+        <%= f.collection_select :category, @categories, :category, :category, include_blank: "カテゴリーを選ぶ" %>
+        <%= f.text_field :title, placeholder: 'タイトルを入力' %>
+        <%= f.submit '登録' %>
+      <% end %>
+    </div>
+    <%= render @properties %>
+  </div>
+</div>

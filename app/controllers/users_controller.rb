@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @content = Content.new
+    @categories = Content.select(:category).distinct
+    @properties = User.find(params[:id]).properties
   end
 
   private

@@ -5,6 +5,7 @@ ruby '2.5.1'
 
 gem 'bootstrap'
 gem 'font-awesome-rails'
+gem 'jquery-rails'
 gem 'pry-byebug'
 gem 'sorcery'
 

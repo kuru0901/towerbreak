@@ -14,9 +14,21 @@
         <li class="nav-item">
           <%= link_to '他の人のリストを見る', users_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to '自分のリストを見る', user_properties_path(current_user), class: "nav-link" %>
-        </li>
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to '自分のリストを見る', user_properties_path(current_user), class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', logout_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'ログイン', login_path, class: "nav-link" %>
+          </li>
+          <li>
+            <%= link_to '新規ユーザー登録', new_user_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

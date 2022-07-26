@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   def index
+    @user = User.find(params[:user_id])
     @content = Content.new
     @categories = categories_set
     @properties = properties_set

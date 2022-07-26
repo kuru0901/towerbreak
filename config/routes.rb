@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   resources :users do
-    resources :properties, only: %i[index create destroy], shallow: true
+    resources :properties, only: %i[index create destroy], shallow: true do
+      resources :votes, only: %i[create destroy]
+    end
   end
 end

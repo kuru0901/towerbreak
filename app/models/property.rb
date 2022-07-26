@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   belongs_to :user
   belongs_to :content
+  has_many :votes
   validates :user_id, uniqueness: { scope: :content_id }
 end

@@ -6,6 +6,15 @@
     <%= property.content.title %>
   </div>
   <div class="col">
-    <%= link_to '削除', property_path(property), method: :delete %>
+    <% if logged_in? && params[:user_id] == current_user.id %>
+      <%= link_to '削除', property_path(property), method: :delete %>
+    <% else %>
+      <%= link_to '投票', property_votes_path(property.id), method: :post %>
+    <% end %>
+  </div>
+  <div class="col">
+    <% if property.votes.count > 0 %>
+      <%= property.votes.count %>人が背中を押しています！
+    <% end %>
   </div>
 <div>

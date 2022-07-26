@@ -1,3 +1,11 @@
 <div class="row">
-  <%= property.content.title %>
+  <div class="col">
+    <%= property.content.category %>
+  </div>
+  <div class="col">
+    <%= property.content.title %>
+  </div>
+  <div class="col">
+    <%= link_to '削除', property_path(property), method: :delete %>
+  </div>
 <div>

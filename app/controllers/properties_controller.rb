@@ -18,6 +18,13 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def destroy
+    property = Property.find(params[:id])
+    user = property.user
+    property.destroy!
+    redirect_to user_properties_path(user)
+  end
+
   private
 
   def categories_set

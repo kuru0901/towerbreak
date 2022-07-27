@@ -12,6 +12,7 @@ class PropertiesController < ApplicationController
     if property.save
       redirect_to(user_properties_path(current_user), notice: '登録しました')
     else
+      @user = User.find(params[:user_id])
       @categories = categories_set
       @properties = properties_set
       flash.now[:alert] = '登録できませんでした'

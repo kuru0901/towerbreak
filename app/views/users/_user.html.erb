@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body">
       <div class="card-title">
-        <h4><%= link_to user.name + "さんが積んでるリスト", user_properties_path(user) %></h4>
+        <h4><%= link_to user.name + "さんのタワー", user_properties_path(user) %></h4>
       </div>
       <% user.properties.limit(5).each do |property| %>
         <div class="card-text">

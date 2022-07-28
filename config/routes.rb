@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'static_pages#top'
+  get 'static_pages/top'
   get 'contents/show'
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

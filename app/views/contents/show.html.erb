@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="center-block">
+    <h1 class="text-center"><%= @content.title %></h1>
+    <p>みんなのコメント</p>
+    <%= render @comments %>
+    <%= form_with model: @comments, url: content_comments_path(@content), local: true do |f| %>
+      <%= f.text_field :body, placeholder: 'コメントを追加' %>
+      <%= f.submit '送信' %>
+    <% end %>
+  </div>
+</div>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   resources :users do
     resources :properties, only: %i[index create destroy], shallow: true do
-      resources :votes, only: %i[create destroy]
+      resources :votes, only: %i[create destroy update]
     end
   end
 end

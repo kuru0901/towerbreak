@@ -6,15 +6,32 @@
     <%= property.content.title %>
   </div>
   <div class="col">
-    <% if logged_in? && property.user_id == current_user.id %>
+    <% if property.user_id == current_user.id %>
       <%= link_to '削除', property_path(property), method: :delete %>
+    <% elsif property.voted_by?(current_user) %>
+      <%= link_to '背中を押しました', vote_path(property.votes.find_by(user_id: current_user.id)), method: :delete %>
     <% else %>
-      <%= link_to '投票', property_votes_path(property.id), method: :post %>
+      <%= link_to '背中を押す！', property_votes_path(property), method: :post %>
     <% end %>
   </div>
   <div class="col">
     <% if property.votes.count > 0 %>
       <%= property.votes.count %>人が背中を押しています！
+    <% end %>
+  </div>
+  <div class="col">
+    <% property.votes.where.not(comment: nil).each do |vote| %>
+      <div class="comment">
+        「<%= vote.comment %>」 by <%= vote.user.name %>
+      </div>
+    <% end %>
+    <% if property.voted_by?(current_user) && property.votes.find_by(user_id: current_user.id).comment.blank? %>
+      <div class="comment">
+        <%= form_with model: property.votes.first, url: vote_path(property.id), local: true, class: "form-inline" do |f| %>
+          <%= f.text_field :comment, placeholder: 'コメントを追加', class: "form-inline" %>
+          <%= f.submit '送信', class: "form-inline" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 <div>

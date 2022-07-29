@@ -1,23 +1,27 @@
 <div class="row">
-  <div class="col">
+  <div class="col-2 body-text">
     <%= property.content.category_i18n %>
   </div>
-  <div class="col border">
-    <%= link_to property.content.title, content_path(property.content) %>
-    おすすめコメント: <%= property.content.comments.count %>件
+  <div class="col-5 border border-white title mb-1">
+    <h4>「<%= property.content.title %>」</h4>
+  </div>
+  <div class="col-1 text-center">
+    <%= link_to "#{property.content.comments.count}件", content_path(property.content), class: "border_none" %>
   </div>
   <div class="col">
     <% if property.user_id == current_user&.id %>
-      <%= link_to '削除', property_path(property), method: :delete %>
+      <%= link_to '削除', property_path(property), method: :delete, class: "border_none" %>
     <% elsif property.voted_by?(current_user) %>
-      <%= link_to '背中を押しました', vote_path(property.votes.find_by(user_id: current_user.id)), method: :delete %>
+      <%= link_to vote_path(property.votes.find_by(user_id: current_user.id)), method: :delete, class: "border_none" do %>
+        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+      <% end %>
     <% else %>
-      <%= link_to '背中を押す！', property_votes_path(property), method: :post %>
+      <%= link_to property_votes_path(property), method: :post, class:  "border_none" do %>
+        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <% end %>
     <% end %>
-  </div>
-  <div class="col">
     <% if property.votes.count > 0 %>
-      <%= property.votes.count %>人が背中を押しています！
+      <%= property.votes.count %>
     <% end %>
   </div>
 <div>

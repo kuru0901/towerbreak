@@ -12,7 +12,9 @@
   <body>
     <%= render partial: 'shared/header' %>
     <%= render partial: 'shared/flash_message' %>
+    <div class="background">
     <%= yield %>
+    </div>
     <%= render partial: 'shared/footer' %>
   </body>
 </html>

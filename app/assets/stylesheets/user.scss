@@ -1,3 +1,26 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+h1 {
+  color: #61421c;
+}
+
+.border_none {
+  color: #61421c;
+  text-decoration: none;
+}
+
+.title {
+  color: #fff;
+  background-color: #61421c;
+}
+
+.background {
+  background-image: url("library.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container-sm {
+  background-color: #fff;
+}

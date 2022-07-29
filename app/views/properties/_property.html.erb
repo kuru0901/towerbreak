@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col">
-    <%= property.content.category %>
+    <%= property.content.category_i18n %>
   </div>
   <div class="col border">
     <%= link_to property.content.title, content_path(property.content) %>
     おすすめコメント: <%= property.content.comments.count %>件
   </div>
   <div class="col">
-    <% if property.user_id == current_user.id %>
+    <% if property.user_id == current_user&.id %>
       <%= link_to '削除', property_path(property), method: :delete %>
     <% elsif property.voted_by?(current_user) %>
       <%= link_to '背中を押しました', vote_path(property.votes.find_by(user_id: current_user.id)), method: :delete %>

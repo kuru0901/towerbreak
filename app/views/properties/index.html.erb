@@ -1,28 +1,26 @@
-  <div class="container-sm w-75">
-    <h1 class="text-center m-4"><%= @user.name %>さんの積んでるコンテンツ一覧</h1>
-    <div class="text-center">
-      <div class="header-row">
-        <div class="row body-text">
-          <div class="col-2 text-center">
-            <p>カテゴリー</p>
-          </div>
-          <div class="col-5 text-center">
-            <p>タイトル</p>
-          </div>
-          <div class="col-1 text-center">
-            コメント
-          </div>
-          <div class="col">
-          </div>
-        <div>
-        <% if logged_in? && @user == current_user %>
-          <%= form_with model: @content, url: user_properties_path(params[:user_id]), local: true do |f| %>
-            <%= f.collection_select :category, @categories, :category, :category, include_blank: "カテゴリーを選ぶ" %>
-            <%= f.text_field :title, placeholder: 'タイトルを入力' %>
-            <%= f.submit '登録' %>
-          <% end %>
-        <% end %>
+<div class="container-sm w-75">
+  <h1 class="text-center m-4"><%= @user.name %>さんの積んでるコンテンツ一覧</h1>
+  <div class="header-row">
+    <div class="row body-text">
+      <div class="col-2 text-center">
+        <p>カテゴリー</p>
       </div>
-      <%= render @properties %>
+      <div class="col-5 text-center">
+        <p>タイトル</p>
+      </div>
+      <div class="col-1 text-center">
+        コメント
+      </div>
+      <div class="col">
+      </div>
     </div>
   </div>
+  <% if logged_in? && @user == current_user %>
+    <%= form_with model: @content, url: user_properties_path(params[:user_id]), local: true do |f| %>
+      <%= f.collection_select :category, @categories, :category, :category, include_blank: "カテゴリーを選ぶ" %>
+      <%= f.text_field :title, placeholder: 'タイトルを入力' %>
+      <%= f.submit '登録' %>
+    <% end %>
+  <% end %>
+  <%= render @properties %>
+</div>

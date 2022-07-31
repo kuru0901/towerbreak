@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     user_ids = Property.select(:user_id).distinct
-    @users = User.where(id: user_ids)
+    @users = User.where(id: user_ids).order(created_at: :desc)
   end
   
   def new

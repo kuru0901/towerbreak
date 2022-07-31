@@ -1,27 +1,34 @@
-<div class="row">
-  <div class="col-2 body-text">
+<div class="row py-2">
+  <div class="col-2 column text-center my-auto">
     <%= property.content.category_i18n %>
   </div>
-  <div class="col-5 border border-white title mb-1">
-    <h4>「<%= property.content.title %>」</h4>
+  <div class="col-6 column my-auto">
+    「<%= property.content.title %>」
   </div>
-  <div class="col-1 text-center">
-    <%= link_to "#{property.content.comments.count}件", content_path(property.content), class: "border_none" %>
+  <div class="col-2 text-center column my-auto">
+    <%= link_to "#{property.content.comments.count}件", content_path(property.content), class: 'border_none' %>
   </div>
-  <div class="col">
+  <div class="col-1 column my-auto">
     <% if property.user_id == current_user&.id %>
-      <%= link_to '削除', property_path(property), method: :delete, class: "border_none" %>
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
     <% elsif property.voted_by?(current_user) %>
-      <%= link_to vote_path(property.votes.find_by(user_id: current_user.id)), method: :delete, class: "border_none" do %>
+      <%= link_to vote_path(property.votes.find_by(user_id: current_user.id)), method: :delete, class: 'border_none' do %>
         <i class="fa fa-thumbs-up" aria-hidden="true"></i>
       <% end %>
     <% else %>
-      <%= link_to property_votes_path(property), method: :post, class:  "border_none" do %>
+      <%= link_to property_votes_path(property), method: :post, class: 'border_none' do %>
         <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
       <% end %>
     <% end %>
     <% if property.votes.count > 0 %>
       <%= property.votes.count %>
+    <% end %>
+  </div>
+  <div class="col-1 column my-auto">
+    <% if property.user_id == current_user&.id %>
+      <%= link_to property_path(property), method: :delete, class: 'border_none' do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
     <% end %>
   </div>
 <div>

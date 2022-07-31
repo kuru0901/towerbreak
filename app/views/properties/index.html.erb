@@ -1,26 +1,32 @@
 <div class="container-sm w-75">
   <h1 class="text-center m-4"><%= @user.name %>さんの積んでるコンテンツ一覧</h1>
-  <div class="header-row">
-    <div class="row body-text">
-      <div class="col-2 text-center">
-        <p>カテゴリー</p>
-      </div>
-      <div class="col-5 text-center">
-        <p>タイトル</p>
-      </div>
-      <div class="col-1 text-center">
-        コメント
-      </div>
-      <div class="col">
+  <div class="contents-wrapper mx-auto">
+    <div class="header-row">
+      <div class="row body-text d-flex align-items-center py-2">
+        <div class="col-2 text-center">
+          カテゴリー
+        </div>
+        <div class="col-6 text-center">
+          タイトル
+        </div>
+        <div class="col-2 text-center">
+          コメント
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-1">
+        </div>
       </div>
     </div>
+    <%= render @properties %>
   </div>
-  <% if logged_in? && @user == current_user %>
-    <%= form_with model: @content, url: user_properties_path(params[:user_id]), local: true do |f| %>
-      <%= f.collection_select :category, @categories, :category, :category, include_blank: "カテゴリーを選ぶ" %>
-      <%= f.text_field :title, placeholder: 'タイトルを入力' %>
-      <%= f.submit '登録' %>
+  <div class="form-wrapper m-5">
+    <% if logged_in? && @user == current_user %>
+      <%= form_with model: @content, url: user_properties_path(params[:user_id]), local: true do |f| %>
+        <%= f.collection_select :category, @categories, :category, :category, { prompt: '選択してください' } %>
+        <%= f.text_field :title, placeholder: 'タイトルを入力', class: 'form-inline w-50' %>
+        <%= f.submit '追加', class: 'btn btn-primary' %>
+      <% end %>
     <% end %>
-  <% end %>
-  <%= render @properties %>
+  </div>
 </div>

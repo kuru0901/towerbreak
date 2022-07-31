@@ -10,9 +10,8 @@ h1 {
   text-decoration: none;
 }
 
-.title {
-  color: #fff;
-  background-color: #61421c;
+.column {
+  color: #61421c;
 }
 
 .background {
@@ -23,4 +22,16 @@ h1 {
 
 .container-sm {
   background-color: #fff;
+}
+
+.contents-wrapper {
+  width: 80%;
+}
+
+.header-row {
+  background-color: #4fa4923e;
+}
+
+.form-wrapper {
+  width: 80%;
 }

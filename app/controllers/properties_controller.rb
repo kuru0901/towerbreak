@@ -3,7 +3,8 @@ class PropertiesController < ApplicationController
     @user = User.find(params[:user_id])
     @content = Content.new
     @categories = categories_set
-    @properties = properties_set
+    properties = properties_set
+    @properties = properties.order(created_at: :desc)
   end
 
   def create

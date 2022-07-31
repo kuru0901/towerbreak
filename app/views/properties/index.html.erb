@@ -18,7 +18,11 @@
         </div>
       </div>
     </div>
-    <%= render @properties %>
+    <% if @properties.count > 0 %>
+      <%= render @properties %>
+    <% else %>
+      今は積んでいるコンテンツはありません
+    <% end %>
   </div>
   <div class="form-wrapper m-5">
     <% if logged_in? && @user == current_user %>

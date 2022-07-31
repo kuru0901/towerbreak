@@ -27,7 +27,7 @@
   <div class="form-wrapper m-5">
     <% if logged_in? && @user == current_user %>
       <%= form_with model: @content, url: user_properties_path(params[:user_id]), local: true do |f| %>
-        <%= f.collection_select :category, @categories, :category, :category, { prompt: '選択してください' } %>
+        <%= f.select :category, Content.categories.keys.map {|k| [I18n.t("enums.content.category.#{k}"), k]}, { prompt: '選択してください' } %>
         <%= f.text_field :title, placeholder: 'タイトルを入力', class: 'form-inline w-50' %>
         <%= f.submit '追加', class: 'btn btn-primary' %>
       <% end %>

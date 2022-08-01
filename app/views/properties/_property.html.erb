@@ -2,12 +2,15 @@
   <div class="col-2 column text-center my-auto">
     <%= property.content.category_i18n %>
   </div>
+
   <div class="col-6 column my-auto">
     「<%= property.content.title %>」
   </div>
+
   <div class="col-2 text-center column my-auto">
     <%= link_to "#{property.content.comments.count}件", content_path(property.content), class: 'border_none' %>
   </div>
+
   <div class="col-1 column my-auto">
     <% if property.user_id == current_user&.id %>
       <i class="fa fa-thumbs-up" aria-hidden="true"></i>
@@ -24,6 +27,7 @@
       <%= property.votes.count %>
     <% end %>
   </div>
+
   <div class="col-1 column my-auto">
     <% if property.user_id == current_user&.id %>
       <%= link_to property_path(property), method: :delete, class: 'border_none' do %>
@@ -31,4 +35,4 @@
       <% end %>
     <% end %>
   </div>
-<div>
+</div>

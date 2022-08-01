@@ -18,6 +18,11 @@ h1 {
   background-image: url("library.jpg");
   background-attachment: fixed;
   background-size: cover;
+  min-height: 100vh;
+}
+
+.form-wrapper {
+  min-height: 100vh;
 }
 
 .container-sm {

@@ -1,36 +1,39 @@
 <div class="container-sm w-75">
-  <h1 class="text-center m-4"><%= @user.name %>さんの積んでるコンテンツ一覧</h1>
-  <div class="contents-wrapper mx-auto">
-    <div class="header-row">
-      <div class="row body-text d-flex align-items-center py-2">
-        <div class="col-2 text-center">
-          カテゴリー
-        </div>
-        <div class="col-6 text-center">
-          タイトル
-        </div>
-        <div class="col-2 text-center">
-          コメント
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
+  <div class="main-wrapper">
+    <h1 class="text-center m-4"><%= @user.name %>さんの積んでるコンテンツ一覧</h1>
+    <div class="contents-wrapper mx-auto">
+      <div class="header-row">
+        <div class="row body-text d-flex align-items-center py-2">
+          <div class="col-2 text-center">
+            カテゴリー
+          </div>
+          <div class="col-6 text-center">
+            タイトル
+          </div>
+          <div class="col-2 text-center">
+            コメント
+          </div>
+          <div class="col-2">
+            おすすめ！
+          </div>
+          <div class="col-1">
+          </div>
         </div>
       </div>
-    </div>
-    <% if @properties.count > 0 %>
-      <%= render @properties %>
-    <% else %>
-      今は積んでいるコンテンツはありません
-    <% end %>
-  </div>
-  <div class="form-wrapper">
-    <% if logged_in? && @user == current_user %>
-      <%= form_with model: @content, url: user_properties_path(params[:user_id]), local: true do |f| %>
-        <%= f.select :category, Content.categories.keys.map {|k| [I18n.t("enums.content.category.#{k}"), k]}, { prompt: '選択してください' } %>
-        <%= f.text_field :title, placeholder: 'タイトルを入力', class: 'form-inline w-50' %>
-        <%= f.submit '追加', class: 'btn btn-primary' %>
+      <% if @properties.count > 0 %>
+        <%= render @properties %>
+      <% else %>
+        今は積んでいるコンテンツはありません
       <% end %>
+    </div>
+    <% if logged_in? && @user == current_user %>
+      <div class="content-form-wrapper text-center m-3">
+        <%= form_with model: @content, url: user_properties_path(params[:user_id]), local: true do |f| %>
+          <%= f.select :category, Content.categories.keys.map {|k| [I18n.t("enums.content.category.#{k}"), k]}, { prompt: '選択してください' } %>
+          <%= f.text_field :title, placeholder: 'タイトルを入力', class: 'form-inline w-50' %>
+          <%= f.submit '追加', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

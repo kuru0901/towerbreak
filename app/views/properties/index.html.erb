@@ -35,5 +35,12 @@
         <% end %>
       </div>
     <% end %>
+    <div class="text-center mt-5">
+      <a href="https://twitter.com/intent/tweet?text=📚<%= @user.name %>さんの積みコンテンツタワー🗼%0a<% @share_properties.map do |p| %>
+        「<%= p.content.title %>」%0a
+      <% end %>
+      続き↓%0a
+      <%= user_properties_url(params[:user_id]) %>" target="_blank"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>Twitterでシェアする！</a>
+    </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ class PropertiesController < ApplicationController
     @categories = categories_set
     properties = properties_set
     @properties = properties.order(created_at: :desc)
+    @share_properties = @properties.limit(5)
   end
 
   def create
